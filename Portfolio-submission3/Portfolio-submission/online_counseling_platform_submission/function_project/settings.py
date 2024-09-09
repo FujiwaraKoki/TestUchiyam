@@ -255,6 +255,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #     'API_KEY': '849992194399532',
 #     'API_SECRET': 'uxavdn8ARiCFCCluRFYB7zXTu0Q',
 # }
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+cloudinary.config( 
+    cloud_name = "dkmofslt4", 
+    api_key = "848774177591921", 
+    api_secret = "7rzS_QcLOxamkc6qKR5Ox0_kQvw", # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'testAPIforUchiyama',
     'API_KEY': '848774177591921',
