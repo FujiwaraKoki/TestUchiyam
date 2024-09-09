@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>{{ theme.title }}</h3>
+
+{% for comment in comments %}
+<div class="col-1 offset-1">
+    {% if comment.user %}
+        {% if comment.user.picture %}
+            <img style="float:left;" width="50px" height="50px" src="{{ comment.user.picture.url }}">
+        {% endif %}
+    {% elif comment.counselor %}
+        {% if comment.counselor.picture %}
+            <img style="float:left;" width="50px" height="50px" src="{{ comment.counselor.picture.url }}">
+        {% endif %}
+    {% endif %}
+</div>
+<div class="col-8 offset-2">
+    {% if comment.user %}
+        <p>名前: {{ comment.user.username }}</p>
+    {% elif comment.counselor %}
+        <p>カウンセラー名: {{ comment.counselor.username }}</p>
+    {% endif %}
+    <p>{{ comment.comment | linebreaks }}</p>
+    {% if comment.user == user or comment.counselor == user %}
+    {% comment %} {% if comment.user == user or comment.counselor == counselor %} {% endcomment %}
+        <a href="{% url 'boards:comment_delete' comment.pk %}">コメント削除</a>
+        <a href="{% url 'boards:edit_comment' comment.pk %}">コメント編集</a>
+    {% endif %}
+</div>
+<div class="col-10 offset-1">
+<hr>
+</div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="col-4 offset-7">
+    <form method="POST">
+    {% csrf_token %}
+    {{ post_comment_form.as_p }}
+    <input type="submit" value="コメント送信">
+    </form>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-end">
+    <a class="btn btn-primary mb-2" href="{% url 'accounts:home' %}">メインメニューへ</a>
+    <a class="btn btn-primary mb-2" href="{% url 'boards:delete_theme' id=theme.id %}">相談を終了する</a>
+</nav>
+
+<script>
+{% comment %} 54～60の下記の記載内容に関しては、チャット画面において、コメント送信時にスペースのみの入力を検知し、送信を中止してエラーメッセージを表示する機能を備えています。これにより、誤って無効なコメントが送信されるのを防ぐことができます。 {% endcomment %}
+document.querySelector("form").addEventListener("submit", function(event){
+    var comment = document.querySelector("#id_comment").value;
+    if (!comment.trim()) {
+        event.preventDefault(); // フォーム送信を中止
+        alert("コメントにスペース(半角全角)のみ入力しないでください"); // エラーメッセージを表示
+    }
+});
+
+$("#save_comment").click(function(){
+    var comment = $("#id_comment").val();
+    $.ajax({
+        url: "{% url 'boards:save_comment' %}",
+        type: "GET",
+        data: {comment: comment, theme_id: "{{ theme.id }}"},
+        dataType: "json",
+        success: function(json){
+            if(json.message){
+                alert(json.message);
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
+

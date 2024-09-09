@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div>{{ message.message }}</div>
+    {% endfor %}
+{% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="保存">
+    </form>
+    {% if user %}
+    <p>name: {{ user.name }}</p>
+    <p>age: {{ user.age }}</p>
+    <img src="{{ user.picture.url }}" style="width: 300px; height: 300px;">
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="保存">
+    </form>
+    {% if user2 %}
+    <p>name: {{ user.name }}</p>
+    <p>age: {{ user.age }}</p>
+    <img src="{{ user.picture.url }}" style="width: 300px; height: 300px;">
+    {% endif %}
+
+    <a class="navbar-brand" href="{% url 'accounts:home' %}">ホーム</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
+    <a class="navbar-brand" href="{% url 'boards:list_themes' %}">チャット制作画面へ</a>
+    <a class="navbar-brand" href="{% url 'boards:list_themes' %}">チャット制作画面へ</a>
+    <a class="navbar-brand" href="{% url 'accounts:home' %}">メインメニューへ</a>
+    <a class="navbar-brand" href="{% url 'boards:counselor_profile' %}">プロフィール画面へ</a>
+</nav>
+
+{% endblock %}

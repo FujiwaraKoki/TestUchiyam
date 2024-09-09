@@ -1,0 +1,20 @@
+<!-- Portfolio-submission/online_counseling_platform_submission/templates/boards/delete_comment.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>コメント削除画面</h2>
+<p>本当にこのコメントを削除しますか？</p>
+<form method="POST">
+    {% csrf_token %}
+    {{ delete_comment_form.as_p }}
+    <input type="submit" value="削除">
+    <button type="button" onclick="goBack()">キャンセル</button>
+</form>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+{% endblock %}
+
