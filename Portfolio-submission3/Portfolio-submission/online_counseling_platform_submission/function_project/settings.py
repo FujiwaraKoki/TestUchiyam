@@ -33,7 +33,7 @@ SECRET_KEY = "django-insecure-cw&h(&866t*h$ns35@(6ifum4*9fcn%20ibdi0@_1_sp8ne@wi
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com', 'Portfoliosubmission3.pythonanywhere.com']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com', 'uchiyamatakuro.pythonanywhere.com', 'http://127.0.0.1:8000/accounts/user_login/'] #ユーザー名【uchiyamatakuro】
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'fujiwarakoki.pythonanywhere.com', 'uchiyamatakuro.pythonanywhere.com', 'http://127.0.0.1:8000/accounts/user_login/'] #ユーザー名【uchiyamatakuro】
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
