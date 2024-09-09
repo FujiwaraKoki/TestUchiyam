@@ -265,7 +265,8 @@ cloudinary.config(
     secure=True
 )
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'testAPIforUchiyama',
+    # 'CLOUD_NAME': 'testAPIforUchiyama',
+    'CLOUD_NAME': 'dkmofslt4',
     'API_KEY': '848774177591921',
     'API_SECRET': '7rzS_QcLOxamkc6qKR5Ox0_kQvw',
 }
