@@ -262,12 +262,14 @@ cloudinary.config(
     cloud_name = "dkmofslt4", 
     api_key = "848774177591921", 
     api_secret = "7rzS_QcLOxamkc6qKR5Ox0_kQvw", # Click 'View API Keys' above to copy your API secret
+    api_proxy = 'http://proxy.server:3128',
     secure=True
 )
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkmofslt4',
     'API_KEY': '848774177591921',
     'API_SECRET': '7rzS_QcLOxamkc6qKR5Ox0_kQvw',
+    'API_PROXY': 'http://proxy.server:3128'
 }
 
 # import requests
